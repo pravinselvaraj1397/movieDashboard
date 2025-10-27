@@ -1,0 +1,2 @@
+import React from 'react'
+export default function TextField({label,id,...rest}:{label:string}&React.InputHTMLAttributes<HTMLInputElement>){return(<label className="flex flex-col gap-1 my-2" htmlFor={id}><span className="text-sm text-muted">{label}</span><input id={id}{...rest}className="rounded-xl border border-zinc-700 bg-transparent px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500/50"/></label>)}

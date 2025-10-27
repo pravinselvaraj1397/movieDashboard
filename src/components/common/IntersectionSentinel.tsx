@@ -1,0 +1,2 @@
+import React from 'react'
+export default function IntersectionSentinel({onIntersect,rootMargin='200px'}:{onIntersect:()=>void;rootMargin?:string}){const ref=React.useRef<HTMLDivElement|null>(null);React.useEffect(()=>{const el=ref.current;if(!el)return;const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting))onIntersect()},{rootMargin});io.observe(el);return()=>io.disconnect()},[onIntersect,rootMargin]);return <div ref={ref} className="h-px" aria-hidden/>}

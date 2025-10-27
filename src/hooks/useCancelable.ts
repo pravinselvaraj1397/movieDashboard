@@ -1,0 +1,2 @@
+import { useEffect, useRef, useState } from 'react'
+export function useCancelable<T>(fn:(s:AbortSignal)=>Promise<T>,deps:any[]=[]){const[d,SD]=useState<T|null>(null);const[l,SL]=useState(false);const[e,SE]=useState<Error|null>(null);const r=useRef<AbortController|null>(null);useEffect(()=>{r.current?.abort();const c=new AbortController();r.current=c;SL(true);Promise.resolve(fn(c.signal)).then(SD).catch(x=>{if((x as any)?.name!=='AbortError')SE(x as Error)}).finally(()=>SL(false));return()=>c.abort()},deps);return{data:d,loading:l,error:e}}
